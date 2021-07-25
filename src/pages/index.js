@@ -1,8 +1,18 @@
 import React from 'react';
 import { Jumbotron, Container, Button, Col } from 'reactstrap';
-import Link from 'next/link';
 
-export default function Home (props){
+export const getStaticProps = async () => {
+
+  const res = await fetch('http://www.colabeduc.org/public/numbers');
+  const data = await res.json();
+  
+
+  return {
+      props: { dados: data }
+  }
+}
+
+export default function Home ({ dados }){
  
   return (
     <div className="bg-light">
@@ -24,7 +34,7 @@ export default function Home (props){
         <Col style={{ maxWidth: '25rem'}}>
         <div className="card counter ">
                   <div className="card-body text-center pb-5 pt-5">
-                      <h2 className="card-title timer count-title count-number"> 1,400</h2>
+                      <h2 className="card-title timer count-title count-number">{dados.usuarios}</h2>
                       <p className="card-text">DESENVOLVEDORES DE GAMES</p>
                   </div>
                 </div>
@@ -32,7 +42,7 @@ export default function Home (props){
           <Col style={{ maxWidth: '25rem'}}>
           <div className="card counter">
                   <div className="card-body text-center pb-5 pt-5">
-                      <h2 className="card-title timer count-title count-number"> 594</h2>
+                      <h2 className="card-title timer count-title count-number">{dados.descricoes}</h2>
                       <p className="card-text">DESCRIÇÕES DE GAMES</p>
                   </div>
                 </div>
@@ -42,7 +52,7 @@ export default function Home (props){
         <Col style={{ maxWidth: '25rem'}}>
         <div className="card counter">
                   <div className="card-body text-center pb-5 pt-5">
-                      <h2 className="card-title timer count-title count-number"> 529</h2>
+                      <h2 className="card-title timer count-title count-number">{dados.projetos}</h2>
                       <p className="card-text">PROJETOS DE GAMES</p>
                   </div>
                 </div>
@@ -50,7 +60,7 @@ export default function Home (props){
           <Col style={{ maxWidth: '25rem'}}>
           <div className="card counter">
                   <div className="card-body text-center pb-5 pt-5">
-                      <h2 className="card-title timer count-title count-number"> 447</h2>
+                      <h2 className="card-title timer count-title count-number">{dados.habilidades}</h2>
                       <p className="card-text">HABILIDADES BNCC</p>
                   </div>
                 </div>
