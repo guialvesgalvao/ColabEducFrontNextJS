@@ -13,27 +13,27 @@ import { useState } from 'react';
 
 
 
-export const Login = (username,password) => {
-    fetch('http://www.colabeduc.org/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(username,password)
-      }).then(r => r.json())
-        .then(json => {
-          console.log(json);
-          //Auth.logIn(json);
-          //this.props.history.replace("/admin/index");
-  
-        })
-        .catch(ex => console.error('Problemas ao logar', ex));
-}
+
 
 export default function Episode ({ dados }) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     
-    
+    async function Login () {
+        fetch('http://www.colabeduc.org/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({username,password})
+          }).then(r => r.json())
+            .then(json => {
+              console.log(json);
+              //Auth.logIn(json);
+              //this.props.history.replace("/admin/index");
+      
+            })
+            .catch(ex => console.error('Problemas ao logar', ex));
+    }
     
     
 
@@ -63,10 +63,11 @@ export default function Episode ({ dados }) {
                        value={password} onChange={(e)=> setPassword(e.target.value)}
                               />
                         </div>
+                        
                         </form>
                         
                      
-                     <Button className="buttonRadiusLogin" onClick={Login} >Entrar</Button>
+                        <Button className="buttonRadiusLogin" onClick={Login} >Entrar</Button>
                      <p className="askAuth">caso ainda não tenha conta, <Link href="/register">Cadastre-se</Link></p>
                     </Card>
                 </div>
