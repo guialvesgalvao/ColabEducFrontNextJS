@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import {Container, Button, Card } from 'reactstrap';
+import {Container, Button, Card,Toast, ToastBody, ToastHeader } from 'reactstrap';
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,7 +18,11 @@ export default function RegisterPage () {
     const [confirmpassword, setconfirmPassword] = useState('');
 
     async function Register () {
-        fetch('http://www.colabeduc.org/api/aa', {
+        if(confirmpassword!=password){
+            {/*insert "alert" from reactstrap*/ }
+        }else{
+
+        fetch('http://www.colabeduc.org/api/signin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({username,password,email})
@@ -27,7 +31,9 @@ export default function RegisterPage () {
               console.log(json);     
             })
             .catch(ex => console.error('Problemas ao registrar', ex));
+        }
     }
+
 
     return (
         <div className=" bg-light">
