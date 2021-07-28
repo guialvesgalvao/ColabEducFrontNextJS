@@ -1,17 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import loginImage from '../../public/login-image.png';
-import colabBrand from '../../public/brandColab1.png';
 
 import {Container, Button, Card } from 'reactstrap';
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import loginImage from '../../public/login-image.png';
 
 
-
-export default function Episode () {
+export default function RegisterPage () {
     return (
         <div className=" bg-light">
             <Container fluid className="divider pt-4">

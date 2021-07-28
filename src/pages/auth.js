@@ -2,23 +2,28 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import loginImage from '../../public/login-image.png';
-import colabBrand from '../../public/brandColab1.png';
-import {Container, Button, Card, Input } from 'reactstrap';
+import {Container, Button, Card} from 'reactstrap';
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { useState } from 'react';
 
+import { parseCookies, setCookie} from 'nookies';
 
+import { useRouter } from 'next/router';
 
-
-
-
-export default function Episode ({ dados }) {
+export default function LoginPage () {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    
+    const cookies = parseCookies();
+    const router = useRouter();
+
+    if(cookies.cookieName){
+        router.push('/');
+    }
     
     async function Login () {
         fetch('http://www.colabeduc.org/api/login', {
@@ -28,13 +33,14 @@ export default function Episode ({ dados }) {
           }).then(r => r.json())
             .then(json => {
               console.log(json);
-              //Auth.logIn(json);
-              //this.props.history.replace("/admin/index");
-      
+              setCookie(null, 'cookieName', json.username, {
+                  maxAge:60*60*24,
+                  path:'/',
+              });
+              router.push('/')     
             })
             .catch(ex => console.error('Problemas ao logar', ex));
     }
-    
     
 
     return (
@@ -48,9 +54,7 @@ export default function Episode ({ dados }) {
                 </div>
                 <div className="secondContainer mt-3">
                     <Card className="p-5 formRadiusLogin">
-                    {/*<Image src={colabBrand} alt="ColabEduc" className="pb-4" layout="responsive" />*/}
                     <Button className="buttonGoogleRadiusLogin" ><FontAwesomeIcon icon={faGoogle} />  Entre usando sua conta Google</Button>
-                    
                     <div className="separator"> ou </div>
                     
                     <form>
@@ -63,11 +67,9 @@ export default function Episode ({ dados }) {
                        value={password} onChange={(e)=> setPassword(e.target.value)}
                               />
                         </div>
-                        
                         </form>
-                        
-                     
                         <Button className="buttonRadiusLogin" onClick={Login} >Entrar</Button>
+                        
                      <p className="askAuth">caso ainda não tenha conta, <Link href="/register">Cadastre-se</Link></p>
                     </Card>
                 </div>
