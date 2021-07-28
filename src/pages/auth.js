@@ -1,17 +1,14 @@
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-
-import loginImage from '../../public/login-image.png';
+import { useRouter } from 'next/router';
 import {Container, Button, Card} from 'reactstrap';
-
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { useState } from 'react';
-
 import { parseCookies, setCookie} from 'nookies';
 
-import { useRouter } from 'next/router';
+import loginImage from '../../public/login-image.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+
 
 export default function LoginPage () {
 
@@ -46,7 +43,6 @@ export default function LoginPage () {
     return (
         <div className=" bg-light">
             <Container fluid className="divider pt-4">
-                
                 <div className="firstContainer">
                 <Image layout="intrinsic" src={loginImage} alt="Crianças Estudando" />
                     <h2 >A evolução dos métodos de aprendizagem é fundamental para a educação!</h2>

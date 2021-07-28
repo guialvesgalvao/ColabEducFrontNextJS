@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -10,6 +11,24 @@ import loginImage from '../../public/login-image.png';
 
 
 export default function RegisterPage () {
+
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmpassword, setconfirmPassword] = useState('');
+
+    async function Register () {
+        fetch('http://www.colabeduc.org/api/aa', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({username,password,email})
+          }).then(r => r.json())
+            .then(json => {
+              console.log(json);     
+            })
+            .catch(ex => console.error('Problemas ao registrar', ex));
+    }
+
     return (
         <div className=" bg-light">
             <Container fluid className="divider pt-4">
@@ -27,24 +46,26 @@ export default function RegisterPage () {
                     <div className="separator"> ou </div>
                     
                     <form>
-                        <div className="mb-3">
-                            <input type="username" className="form-control" placeholder="Username" />
+                    <div className="mb-3">
+                        <input className="form-control" placeholder="Username" type="username" 
+                       value={username} onChange={(e)=> setUsername(e.target.value)}/>
                         </div>
                         <div className="mb-3">
-                            <input type="email" className="form-control"
-                            placeholder="Email"  />
+                        <input className="form-control" placeholder="Email" type="email" 
+                       value={email} onChange={(e)=> setEmail(e.target.value)}/>
                         </div>
                         <div className="mb-3">
-                            <input type="password" className="form-control"
-                            placeholder="Senha"  />
+                            <input  className="form-control" placeholder="Senha" type="password" 
+                             value={password} onChange={(e)=> setPassword(e.target.value)}
+                              />
                         </div>
                         <div className="mb-3">
-                            <input type="password" className="form-control"
-                            placeholder="Confirme sua senha"  />
+                        <input className="form-control" placeholder="Confirme sua senha" type="password" 
+                       value={confirmpassword} onChange={(e)=> setconfirmPassword(e.target.value)}/>
                         </div>
                         </form>
                         
-                     <Button className="buttonRadiusLogin">Cadastrar</Button>
+                     <Button className="buttonRadiusLogin" onClick={Register}>Cadastrar</Button>
                      <p className="askAuth">Já possui uma conta? <Link href="/auth">Login</Link></p>
                     </Card>
                 </div>
