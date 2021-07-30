@@ -36,10 +36,10 @@ export default function ButtonHeader () {
                     <DropdownItem >
                       Meus Projetos
                     </DropdownItem>
-                    <DropdownItem>
+                    <DropdownItem href="/projetos">
                       Projetos
                     </DropdownItem>
-                    <DropdownItem>
+                    <DropdownItem href="/nomeDoUsuario/descricoes">
                       Minhas Descrições
                     </DropdownItem>
                     <DropdownItem>
