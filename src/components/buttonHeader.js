@@ -6,7 +6,7 @@ import {
     DropdownItem,
     Button
   } from 'reactstrap';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 export default function ButtonHeader () {
     const router = useRouter();
@@ -15,7 +15,7 @@ export default function ButtonHeader () {
 
     function logOut () {
         destroyCookie(null, 'cookieName');
-        router.push('/')
+        router.push('/');
         
     }
 
@@ -45,7 +45,7 @@ export default function ButtonHeader () {
                     <DropdownItem>
                       Listar Descrições
                     </DropdownItem>
-                    <DropdownItem>
+                    <DropdownItem href="/nomeDoUsuario/criar-descricao">
                       Criar Descrição
                     </DropdownItem> 
                     <DropdownItem onClick={logOut}>
