@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { parseCookies } from 'nookies';
 
-import {Container, Button, Card,Toast, ToastBody, ToastHeader } from 'reactstrap';
+import {Container, Button, Card } from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 
 
@@ -17,6 +19,13 @@ export default function RegisterPage () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmpassword, setconfirmPassword] = useState('');
+
+    const cookies = parseCookies();
+    const router = useRouter();
+
+    if(cookies.cookieName){
+        router.push('/');
+    }
 
     async function Register () {
         fetch('http://www.colabeduc.org/api/signin', {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import {Container, Button, Card} from 'reactstrap';
+import {Container, Button, Card, Alert} from 'reactstrap';
 import { parseCookies, setCookie} from 'nookies';
 
 import loginImage from '../../public/login-image.png';
@@ -18,6 +18,8 @@ export default function LoginPage () {
     const cookies = parseCookies();
     const router = useRouter();
 
+    const [invalidAccount, setinvalidAccount] = useState(false);
+
     if(cookies.cookieName){
         router.push('/');
     }
@@ -30,13 +32,14 @@ export default function LoginPage () {
           }).then(r => r.json())
             .then(json => {
               console.log(json);
+              setinvalidAccount (false);
               setCookie(null, 'cookieName', json.username, {
                   maxAge:60*60*24,
                   path:'/',
               });
               router.push('/')     
             })
-            .catch(ex => console.error('Problemas ao logar', ex));
+            .catch(setinvalidAccount (true));
     }
     
 
@@ -58,11 +61,13 @@ export default function LoginPage () {
                         <input className="form-control" placeholder="Username" type="username" 
                        value={username} onChange={(e)=> setUsername(e.target.value)}/>
                         </div>
+                        
                         <div className="mb-3">
                             <input  className="form-control" placeholder="Senha" type="password" 
                        value={password} onChange={(e)=> setPassword(e.target.value)}
                               />
                         </div>
+                        <Alert color="danger" isOpen={invalidAccount}> Usuário ou senha inválido</Alert>
                         </form>
                         <Button className="buttonRadiusLogin" onClick={Login} >Entrar</Button>
                         
