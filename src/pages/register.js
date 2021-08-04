@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import {Container, Button, Card,Toast, ToastBody, ToastHeader } from 'reactstrap';
+import { AvForm, AvField } from 'availity-reactstrap-validation';
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,10 +19,6 @@ export default function RegisterPage () {
     const [confirmpassword, setconfirmPassword] = useState('');
 
     async function Register () {
-        if(confirmpassword!=password){
-            {/*insert "alert" from reactstrap*/ }
-        }else{
-
         fetch('http://www.colabeduc.org/api/signin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -30,8 +27,7 @@ export default function RegisterPage () {
             .then(json => {
               console.log(json);     
             })
-            .catch(ex => console.error('Problemas ao registrar', ex));
-        }
+            .catch(ex => console.error('Problemas ao registrar', ex));        
     }
 
 
@@ -51,27 +47,26 @@ export default function RegisterPage () {
                     
                     <div className="separator"> ou </div>
                     
-                    <form>
-                    <div className="mb-3">
-                        <input className="form-control" placeholder="Username" type="username" 
-                       value={username} onChange={(e)=> setUsername(e.target.value)}/>
-                        </div>
-                        <div className="mb-3">
-                        <input className="form-control" placeholder="Email" type="email" 
-                       value={email} onChange={(e)=> setEmail(e.target.value)}/>
-                        </div>
-                        <div className="mb-3">
-                            <input  className="form-control" placeholder="Senha" type="password" 
-                             value={password} onChange={(e)=> setPassword(e.target.value)}
-                              />
-                        </div>
-                        <div className="mb-3">
-                        <input className="form-control" placeholder="Confirme sua senha" type="password" 
-                       value={confirmpassword} onChange={(e)=> setconfirmPassword(e.target.value)}/>
-                        </div>
-                        </form>
+                    <AvForm>
+                        <AvField name="Username" label="Username" type="text" value={username} validate={{
+                            required: {value: true, errorMessage: 'Insira um nome'},
+                            pattern: {value: '^[A-Za-z0-9]+$', errorMessage: 'O nome não pode conter caracteres especiais'},
+                            minLength: {value: 6, errorMessage: 'O nome deve conter de 6 à 16 caracteres'},
+                            maxLength: {value: 16, errorMessage: 'O nome deve conter de 6 à 16 caracteres'}
+                        }} />
+                        <AvField name="email" label="Email" type="email" value={email} validate={{
+                            required: {email: true,errorMessage: 'Insira um email válido'},
+                        }} />
+                        <AvField name="originalPassword" label="Senha" type="password" value={password} validate={{
+                            required: {value: true, errorMessage: 'Insira uma senha'},
+                            minLength: {value: 6, errorMessage: 'A senha deve conter de 6 à 16 caracteres'},
+                            maxLength: {value: 16, errorMessage: 'A senha deve conter de 6 à 16 caracteres'}
+                        }} />
+                        <AvField name="confirmPassword" label="Confirme a senha" type="password" value={confirmpassword} validate={{match:{value:'originalPassword', errorMessage: 'As senhas estão diferentes'}}} />
                         
-                     <Button className="buttonRadiusLogin" onClick={Register}>Cadastrar</Button>
+                    </AvForm>
+                    <Button className="buttonRadiusLogin" onClick={Register}>Cadastrar</Button>
+                    {/*If a problem appear, insert de button in the AvFormTAG*/}
                      <p className="askAuth">Já possui uma conta? <Link href="/auth">Login</Link></p>
                     </Card>
                 </div>
