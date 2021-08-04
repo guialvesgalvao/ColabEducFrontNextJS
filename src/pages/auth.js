@@ -39,7 +39,7 @@ export default function LoginPage () {
               });
               router.push('/')     
             })
-            .catch(setinvalidAccount (true));
+            .catch(ex => setinvalidAccount (true));
     }
     
 

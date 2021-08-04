@@ -17,6 +17,7 @@ export default function ButtonHeader () {
         destroyCookie(null, 'cookieName');
         router.push('/');
         
+        
     }
 
     if(!cookies.cookieName){

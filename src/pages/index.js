@@ -18,6 +18,8 @@ export const getStaticProps = async () => {
 
 
 export default function Home ({ dados }){
+
+  
   const cookies = parseCookies();
   const router = useRouter();
   
@@ -40,6 +42,14 @@ export default function Home ({ dados }){
           </Container>
         </Container>
       </Jumbotron>
+      
+      <div className="pb-4 divShowGames">
+      <Container className="pb-5">
+        <h1 className="titleShowGames">Conheça nossos jogos</h1>
+      </Container>
+      </div>
+
+
       <Container className="pb-5 ">
       <div className="row pb-4">
       <h1 className="display-6 ">Acompanhe nosso crescimento...</h1>
