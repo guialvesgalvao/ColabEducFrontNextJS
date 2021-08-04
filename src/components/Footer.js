@@ -20,8 +20,10 @@ export default function Footer () {
              
              <span>Copyright © Colabeduc 2020</span></div>
          <div className="footerImage">
-             <Link href='http://www.natalnet.br/home/' passHref>
-                 <Image src={natalnetLogo} alt="Natalnet Labs" />
+             <Link href='http://www.natalnet.br/home/'>
+                 <a href="">
+                     <Image src={natalnetLogo} alt="Natalnet Labs" />
+                 </a>
              </Link>
          </div>
          

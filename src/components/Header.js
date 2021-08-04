@@ -12,8 +12,10 @@ export default function Header()  {
      <nav className="navbar navbar-expand-lg navbar-light bg-light">
     <div className="container-fluid list-unstyled">
       
-    <Link passHref href="/" >
-    <Image src={logo} alt="ColabEduc" />
+    <Link href="/" >
+    <a>
+      <Image src={logo} alt="ColabEduc" />
+    </a>
     </Link>
     
     
