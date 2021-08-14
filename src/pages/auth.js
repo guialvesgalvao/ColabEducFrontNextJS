@@ -37,6 +37,10 @@ export default function LoginPage () {
                   maxAge:60*60*24,
                   path:'/',
               });
+              setCookie(null, 'cookieToken', json.access_token, {
+                maxAge:60*60*24,
+                path:'/',
+            });
               router.push('/')     
             })
             .catch(ex => setinvalidAccount (true));

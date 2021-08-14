@@ -28,7 +28,7 @@ export default function RegisterPage () {
     }
 
     async function Register () {
-        fetch('http://www.colabeduc.org/api/signin', {
+        fetch('http://colabeduc.org/cadastro/usuario', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({username,password,email})
@@ -75,7 +75,7 @@ export default function RegisterPage () {
                         
                     </AvForm>
                     <Button className="buttonRadiusLogin" onClick={Register}>Cadastrar</Button>
-                    {/*If a problem appear, insert de button in the AvFormTAG*/}
+                    {/*If a problem appear, insert the button in the AvFormTAG*/}
                      <p className="askAuth">Já possui uma conta? <Link href="/auth">Login</Link></p>
                     </Card>
                 </div>

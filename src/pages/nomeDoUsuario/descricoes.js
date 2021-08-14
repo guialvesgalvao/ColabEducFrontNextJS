@@ -2,28 +2,35 @@ import { parseCookies } from "nookies";
 import { Container,Alert } from "reactstrap";
 
 export const getStaticProps = async () => {
+   const cookies = parseCookies();
+   const token = cookies.cookieToken;  
 
-    const cookies = parseCookies();
-    const nomeDoUsuario =  "guialvesgalvao"//cookies.cookieName;
-    
-    const res = await fetch('http://www.colabeduc.org/public/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify()
+    const res = await fetch('http://colabeduc.org/api/descricao', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json', 'X-Auth-Token': [token] }
       });
-    const rJson = await res.json();
-    const meuNome = rJson.find( data => data.username == nomeDoUsuario);
-    const descricao = meuNome.descricoes;
+    const rJson = res.json();
+    const la = {
+         ta: rJson
+    }
 
     
   
     return {
-        props: { existDescription: descricao }
+      props: { descricao: la }
     }
   }
 
-
-export default function minhasDescrições ({ existDescription }) {
+  export default function descricoes ({ descricao }) {
+    const cookies = parseCookies();
+     const token = cookies.cookieToken;
+     console.log(token)
+    
+    return (
+      <div><h1>Olá</h1></div>
+    )
+  }
+  /*export default function minhasDescrições ({ existDescription }) {
      //
      if(!existDescription[0]){
         return (<div className="h-100vh"><Container><Alert color="danger">
@@ -41,7 +48,7 @@ export default function minhasDescrições ({ existDescription }) {
      }
     
 
-     /*function findDescricoes () {
+   function findDescricoes () {
         fetch('http://www.colabeduc.org/public/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -59,6 +66,6 @@ export default function minhasDescrições ({ existDescription }) {
                 return teste;
             })
             
-    }*/
+    }
 
-}
+}*/

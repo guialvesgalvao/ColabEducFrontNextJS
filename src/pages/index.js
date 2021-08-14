@@ -45,7 +45,7 @@ export default function Home ({ dados }){
       
       <div className="pb-4 divShowGames">
       <Container className="pb-5">
-        <h1 className="titleShowGames">Conheça nossos jogos</h1>
+      <h1 className="titleShowGames">Conheça nossos jogos</h1>
       </Container>
       </div>
 
