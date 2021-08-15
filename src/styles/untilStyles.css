@@ -1,5 +1,15 @@
         
 /*---- TopNavButton ----*/ 
+.positionButtonImage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrumardps {
+    color:transparent;
+}
 
 .navButton {
     color: red;
@@ -43,7 +53,7 @@ align-items: center;
 }
 
 .footerIcon {
-    color: black;
+    color: #202020;
     margin-left: 1rem;
 }
 
@@ -144,6 +154,82 @@ align-items: center;
     font-weight: 500;
     color: #fff;
 
+}
+
+/*---- Perfil Pages ----*/
+
+.row-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.row-data span {
+    font-weight: 300;
+}
+
+.headerPerfilPage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.buttonBack {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    background-color: #481f87;
+}
+.buttonBack:hover {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    background-color: #481f87;
+}
+.buttonBack:focus {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    background-color: #481f87;
+}
+
+
+.buttonEditPerfil {
+    background-color: #481f87;
+    color: #fff;
+}
+
+.buttonEditPerfil:hover {
+    background-color: #481f87;
+}
+.buttonEditPerfil:focus {
+    background-color: #481f87;
+}
+
+.cardPage {
+    background-color: #fff;
+    padding: 3%;
+    border-radius: 3%;
+    border: 1px #202020 solid
+}
+
+.border-radius-image {
+    border-radius: 35%;
+}
+
+.perfilImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.formSize {
+   width: 100%;
 }
 @media(max-width: 1080px){
     .divider{

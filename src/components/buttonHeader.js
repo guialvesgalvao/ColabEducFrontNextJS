@@ -7,6 +7,10 @@ import {
     Button
   } from 'reactstrap';
 import { useRouter } from 'next/router';
+import Link from "next/dist/client/link";
+import Image from 'next/image';
+import loginImage from '../../public/login-image.png';
+import undefinedProfilePic from '../../public/undefinedProfilePic.jpg';
 
 export default function ButtonHeader () {
     const router = useRouter();
@@ -15,6 +19,7 @@ export default function ButtonHeader () {
 
     function logOut () {
         destroyCookie(null, 'cookieName');
+        destroyCookie(null, 'cookieToken');
         router.push('/');
         
         
@@ -28,9 +33,15 @@ export default function ButtonHeader () {
     }
     else{
         return(
-          <div>
+          <div className="positionButtonImage">
             
-              <span>a</span>
+            <Link href="/nomeDoUsuario/perfil">
+              <a>
+                <Image src={loginImage} layout="intrinsic" alt="Foto de perfil do Usuário" width="32" height="32" className="border-radius-image"/>
+              </a>
+            </Link>
+            <span className="arrumardps">aa</span>
+            
               <Button className="navButton"  size="sm">
                   <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle className="textNavButton" nav caret>
