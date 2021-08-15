@@ -51,27 +51,26 @@ export default function RegisterPage () {
                 </div>
                 <div className="secondContainer mt-3">
                     <Card className="p-5 formRadiusLogin">
-                    {/*<Image src={colabBrand} alt="ColabEduc" className="pb-4" layout="responsive" />*/}
                     <Button className="buttonGoogleRadiusLogin"><FontAwesomeIcon icon={faGoogle} />  Cadastre-se usando sua conta Google</Button>
                     
                     <div className="separator"> ou </div>
                     
-                    <AvForm>
-                        <AvField name="Username" label="Username" type="text" value={username} validate={{
+                    <AvForm className="mb-1">
+                        <AvField className="mb-2" name="Username" placeholder="Username" type="text" value={username} validate={{
                             required: {value: true, errorMessage: 'Insira um nome'},
                             pattern: {value: '^[A-Za-z0-9]+$', errorMessage: 'O nome não pode conter caracteres especiais'},
                             minLength: {value: 6, errorMessage: 'O nome deve conter de 6 à 16 caracteres'},
                             maxLength: {value: 16, errorMessage: 'O nome deve conter de 6 à 16 caracteres'}
                         }} />
-                        <AvField name="email" label="Email" type="email" value={email} validate={{
+                        <AvField className="mb-2" name="email" placeholder="Email" type="email" value={email} validate={{
                             required: {email: true,errorMessage: 'Insira um email válido'},
                         }} />
-                        <AvField name="originalPassword" label="Senha" type="password" value={password} validate={{
+                        <AvField className="mb-2" name="originalPassword" placeholder="Senha" type="password" value={password} validate={{
                             required: {value: true, errorMessage: 'Insira uma senha'},
                             minLength: {value: 6, errorMessage: 'A senha deve conter de 6 à 16 caracteres'},
                             maxLength: {value: 16, errorMessage: 'A senha deve conter de 6 à 16 caracteres'}
                         }} />
-                        <AvField name="confirmPassword" label="Confirme a senha" type="password" value={confirmpassword} validate={{match:{value:'originalPassword', errorMessage: 'As senhas estão diferentes'}}} />
+                        <AvField className="mb-2" name="confirmPassword" placeholder="Confirme a senha" type="password" value={confirmpassword} validate={{match:{value:'originalPassword', errorMessage: 'As senhas estão diferentes'}}} />
                         
                     </AvForm>
                     <Button className="buttonRadiusLogin" onClick={Register}>Cadastrar</Button>

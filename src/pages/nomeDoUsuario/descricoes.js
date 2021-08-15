@@ -17,14 +17,16 @@ export const getStaticProps = async () => {
     
   
     return {
-      props: { descricao: la }
+      props: { descricao: "a" }
     }
   }
 
   export default function descricoes ({ descricao }) {
     const cookies = parseCookies();
      const token = cookies.cookieToken;
-     console.log(token)
+     console.log(token);
+    
+    console.log(res)
     
     return (
       <div><h1>Olá</h1></div>

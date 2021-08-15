@@ -28,34 +28,38 @@ export default function ButtonHeader () {
     }
     else{
         return(
-            <Button className="navButton"  size="sm">
-                <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle className="textNavButton" nav caret>
-                    Hello, {cookies.cookieName}
-                  </DropdownToggle>
-                  <DropdownMenu className="textNavButton" right>
-                    <DropdownItem >
-                      Meus Projetos
-                    </DropdownItem>
-                    <DropdownItem href="/projetos">
-                      Projetos
-                    </DropdownItem>
-                    <DropdownItem href="/nomeDoUsuario/descricoes">
-                      Minhas Descrições
-                    </DropdownItem>
-                    <DropdownItem>
-                      Listar Descrições
-                    </DropdownItem>
-                    <DropdownItem href="/nomeDoUsuario/criar-descricao">
-                      Criar Descrição
-                    </DropdownItem> 
-                    <DropdownItem onClick={logOut}>
-                      Sair
-                    </DropdownItem>               
-                    
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-    </Button>
+          <div>
+            
+              <span>a</span>
+              <Button className="navButton"  size="sm">
+                  <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle className="textNavButton" nav caret>
+                      Hello, {cookies.cookieName}
+                    </DropdownToggle>
+                    <DropdownMenu className="textNavButton" right>
+                      <DropdownItem >
+                        Meus Projetos
+                      </DropdownItem>
+                      <DropdownItem href="/projetos">
+                        Projetos
+                      </DropdownItem>
+                      <DropdownItem href="/nomeDoUsuario/descricoes">
+                        Minhas Descrições
+                      </DropdownItem>
+                      <DropdownItem>
+                        Listar Descrições
+                      </DropdownItem>
+                      <DropdownItem href="/nomeDoUsuario/criar-descricao">
+                        Criar Descrição
+                      </DropdownItem>
+                      <DropdownItem onClick={logOut}>
+                        Sair
+                      </DropdownItem>
+            
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                </Button>
+          </div>
         )
     }
 
