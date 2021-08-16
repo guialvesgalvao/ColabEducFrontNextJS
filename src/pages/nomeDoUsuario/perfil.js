@@ -16,7 +16,7 @@ export const getStaticProps = async () => {
 
     const res = await fetch('http://www.colabeduc.org/public/');
     const resJson = await res.json();
-    const load = resJson.find( tab => tab.username == `papaiquer`);
+    const load = resJson.find( tab => tab.username == `testeca32`);
 
     let profilePic;
     const userImageString = load.profileImageUrl;
@@ -44,8 +44,7 @@ export default function Perfil ({userData}) {
     console.log(userData.image)
     const dataCriacaoString = userData.chegada;
     const dataCriacaoArray = dataCriacaoString.split('');
-    const dataCriacao = dataCriacaoArray[0]+dataCriacaoArray[1]+dataCriacaoArray[2]+dataCriacaoArray[3]+"/"+dataCriacaoArray[5]+dataCriacaoArray[6]+"/"+dataCriacaoArray[8]+dataCriacaoArray[9]
-    
+    const dataCriacao = dataCriacaoArray[8]+dataCriacaoArray[9]+"/"+dataCriacaoArray[5]+dataCriacaoArray[6]+"/"+dataCriacaoArray[0]+dataCriacaoArray[1]+dataCriacaoArray[2]+dataCriacaoArray[3]
     //if(!cookies.cookieName){
     //    router.push('/');
     //}
