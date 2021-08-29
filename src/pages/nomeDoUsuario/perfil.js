@@ -11,9 +11,9 @@ import Link from "next/link";
 
 export const getStaticProps = async () => {
 
-    const cookies = await parseCookies();
-    const myName = cookies.cookieName;
-
+    const cookies = parseCookies();
+    const myName = await cookies.cookieName;
+        console.log(myName);
     const res = await fetch('http://www.colabeduc.org/public/');
     const resJson = await res.json();
     const load = resJson.find( tab => tab.username == `testeca32`);
