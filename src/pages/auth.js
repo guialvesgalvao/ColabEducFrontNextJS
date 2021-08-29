@@ -14,7 +14,7 @@ export default function LoginPage () {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    
+
     const cookies = parseCookies();
     const router = useRouter();
 
@@ -72,8 +72,9 @@ export default function LoginPage () {
                               />
                         </div>
                         <Alert color="danger" isOpen={invalidAccount}> Usuário ou senha inválido</Alert>
-                        </form>
                         <Button className="buttonRadiusLogin" onClick={Login} >Entrar</Button>
+                        </form>
+
                         
                      <p className="askAuth">caso ainda não tenha conta, <Link href="/register">Cadastre-se</Link></p>
                     </Card>

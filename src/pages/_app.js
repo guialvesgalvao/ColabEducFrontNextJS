@@ -2,7 +2,9 @@ import  Header  from "../components/Header";
 import  Footer  from "../components/Footer";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/untilStyles.css';
+import '../styles/defaultPagesStyle.css';
+import '../styles/personalPagesStyle.css';
+
 
 
 

@@ -9,19 +9,20 @@ export default function Header()  {
 
     return (
     <>
-     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-    <div className="container-fluid list-unstyled">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid list-unstyled">
+        
+      <Link href="/" >
+      <a>
+        <Image src={logo} alt="ColabEduc" />
+      </a>
+      </Link>
       
-    <Link href="/" >
-    <a>
-      <Image src={logo} alt="ColabEduc" />
-    </a>
-    </Link>
-    
-    
-    {ButtonHeader()}
-  </div>
-</nav>
+      
+      {ButtonHeader()}
+      </div>
+    </nav>
+    <hr style={{color: 'black',margin: '-4px' }}/>
     </>
     );
     

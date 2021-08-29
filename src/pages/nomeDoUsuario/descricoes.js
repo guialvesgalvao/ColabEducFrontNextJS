@@ -1,73 +1,75 @@
+import { Container,Alert,Button, Card,CardBody,CardText,CardTitle,Badge,CardHeader,CardFooter } from "reactstrap";
 import { parseCookies } from "nookies";
-import { Container,Alert } from "reactstrap";
 
-export const getStaticProps = async () => {
-   const cookies = parseCookies();
-   const token = cookies.cookieToken;  
 
-    const res = await fetch('http://colabeduc.org/api/descricao', {
+
+{/*export async function getStaticProps() {
+  const cookies = parseCookies();
+  const token = cookies.cookieToken;
+  let epa;
+      const res = fetch('http://colabeduc.org/api/projeto', {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json', 'X-Auth-Token': [token] }
+        headers: { 'Content-Type': 'application/json', 'X-Auth-Token': token }
+      }).then((response) => response.json()) //2
+      .then((user) => {
+        console.log(user[1]);
       });
-    const rJson = res.json();
-    const la = {
-         ta: rJson
+
+
+           async function testar (){
+      const res = await fetch('http://colabeduc.org/api/projeto', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json', 'X-Auth-Token': token }
+      }).then((response) => response.json()) //2
+      .then((user) => {
+        console.log(user); //3
+      });
+  //https://dev.to/ramonak/javascript-how-to-access-the-return-value-of-a-promise-object-1bck
     }
 
-    
-  
     return {
-      props: { descricao: "a" }
+      props: { name:"abobora" }
     }
-  }
+  }*/}
 
-  export default function descricoes ({ descricao }) {
+  export default function Descricoes () {
     const cookies = parseCookies();
      const token = cookies.cookieToken;
-     console.log(token);
-    
-    console.log(res)
-    
+     const gameData = [
+      {name: "Chuva de Números",id: 1,description:"game 1",criador:"João",link:"https://www.instagram.com/guialvesgalvao/",materia:{materianame: "História",color: "yellow"},ano: "9º fundamental"},
+      {name: "League of Legends",id: 2,description:"game 2",criador:"Leandro",link:"https://www.instagram.com/guialvesgalvao/",materia:{materianame: "Matemática",color:"blue"},ano: "3º fundamental"},
+      {name: "Call of Duty",id: 3,description:"game 3",criador:"Astolfo",link:"https://www.instagram.com/guialvesgalvao/",materia:{materianame: "Português",color:"red"},ano: "4º fundamental"},
+      {name: "BattleField",id:4,description:"game 4",criador:"Rodolfo",link:"https://www.instagram.com/guialvesgalvao/",materia:{materianame: "Geografia",color:"green"},ano: "7º fundamental"},
+      {name: "GTA 5",id: 5,description:"game 5",criador:"Kevin",link:"https://www.instagram.com/guialvesgalvao/",materia:{materianame: "Ed. Fisíca",color:"grey"},ano: "1º fundamental"}
+  ];
+console.log (gameData);
+
     return (
-      <div><h1>Olá</h1></div>
+      <div>
+
+      <Container>
+        <h1 className="mb-5">Descrições</h1>
+      </Container>
+
+      <Container>
+        <div className="orgOfCards">{gameData.map((gameData) => (
+          <Card className="descriptionCard" key={gameData.id}>
+            <CardHeader className="separeTwoItems">
+                <CardTitle className="separeTwoItemsExtra">{gameData.name} </CardTitle>
+                <Badge  style={{boxSizing: 'content-box',color: 'white',backgroundColor: `${gameData.materia.color}` }}>{gameData.materia.materianame} {gameData.ano}</Badge>
+             
+            </CardHeader>
+            <CardBody>
+              <span>Resumo</span>
+              <CardText>{gameData.description}</CardText>
+            </CardBody>
+            <CardFooter className="separeTwoItems"><Button size="sm" >Usar Descrição</Button>
+            <span>Criador: {gameData.criador}</span>
+            </CardFooter>
+          </Card>
+        ))}</div>
+      </Container>
+      </div>
+
     )
   }
-  /*export default function minhasDescrições ({ existDescription }) {
-     //
-     if(!existDescription[0]){
-        return (<div className="h-100vh"><Container><Alert color="danger">
-        <h2 className="alert-heading">Você não tem nenhuma descrição!</h2>
-        <p>
-          Uma descrição boa é essencial para a criação do seu game educativo, durante a criação não esqueça de ser direto e enfático na descrição do seu jogo, é fundamental para chamar a atenção dos players.
-        </p>
-        <hr />
-        <p className="mb-0">
-        Não perca tempo, e <a href="#" className="alert-link">crie uma descrição</a>. 
-        </p>
-      </Alert></Container></div>)
-     }else {
-        return(<div><h1>Listar descrições pessoais</h1>{console.log(parseCookies)}</div>)
-     }
-    
-
-   function findDescricoes () {
-        fetch('http://www.colabeduc.org/public/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify()
-          }).then(r => r.json())
-            .then(json => {
-                const meuNome = json.find( data => data.username == nomeDoUsuario);
-                const descricoes = meuNome.descricoes;
-                const teste = descricoes[0];
-                if(!teste){
-                    console.log("funcionou")
-                }else{
-                console.log("eita funcionou")
-                }
-                return teste;
-            })
-            
-    }
-
-}*/

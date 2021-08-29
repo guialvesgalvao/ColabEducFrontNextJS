@@ -12,7 +12,9 @@ import Image from 'next/image';
 import loginImage from '../../public/login-image.png';
 import undefinedProfilePic from '../../public/undefinedProfilePic.jpg';
 
-export default function ButtonHeader () {
+
+
+export default function ButtonHeader ( ) {
     const router = useRouter();
     const cookies = parseCookies();
 
@@ -24,6 +26,7 @@ export default function ButtonHeader () {
         
         
     }
+
 
     if(!cookies.cookieName){
         return (
@@ -37,13 +40,17 @@ export default function ButtonHeader () {
             
             <Link href="/nomeDoUsuario/perfil">
               <a>
-                <Image src={loginImage} layout="intrinsic" alt="Foto de perfil do Usuário" width="32" height="32" className="border-radius-image"/>
+                <Image 
+                src={loginImage}
+                layout="intrinsic" 
+                alt="Foto de perfil do Usuário" 
+                width="32" height="32" className="border-radius-image"/>
               </a>
             </Link>
             <span className="arrumardps">aa</span>
             
               <Button className="navButton"  size="sm">
-                  <UncontrolledDropdown nav inNavbar>
+                  <UncontrolledDropdown  nav inNavbar>
                     <DropdownToggle className="textNavButton" nav caret>
                       Hello, {cookies.cookieName}
                     </DropdownToggle>
@@ -54,10 +61,10 @@ export default function ButtonHeader () {
                       <DropdownItem href="/projetos">
                         Projetos
                       </DropdownItem>
-                      <DropdownItem href="/nomeDoUsuario/descricoes">
+                      <DropdownItem >
                         Minhas Descrições
                       </DropdownItem>
-                      <DropdownItem>
+                      <DropdownItem href="/nomeDoUsuario/descricoes">
                         Listar Descrições
                       </DropdownItem>
                       <DropdownItem href="/nomeDoUsuario/criar-descricao">
