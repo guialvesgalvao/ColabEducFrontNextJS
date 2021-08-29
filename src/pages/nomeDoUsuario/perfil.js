@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export const getStaticProps = async () => {
 
-    const cookies = parseCookies();
+    const cookies = await parseCookies();
     const myName = cookies.cookieName;
 
     const res = await fetch('http://www.colabeduc.org/public/');

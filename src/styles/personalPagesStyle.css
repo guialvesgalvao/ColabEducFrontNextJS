@@ -93,10 +93,36 @@
 }
 
 .orgOfCards {
-    height: 20%;
+    height: 2  0%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: left;
-    align-items: center;
+}
+
+.subjectButton {
+    border-radius: 0%;
+    border: 1.5px solid black;
+}
+
+.handleInfo {
+    background-color: grey;
+    color: white;
+    width: max-content;
+    font-size: 1rem;
+    padding: 0.5% 2% 0.5% 2%;
+}
+
+@media(max-width: 1080px){
+    .descriptionCard {
+        width: 45%;
+    }
+    
+}
+
+
+@media(max-width: 800px){
+    .descriptionCard {
+        width: 85%;
+    }
 }

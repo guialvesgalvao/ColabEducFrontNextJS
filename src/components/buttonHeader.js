@@ -58,14 +58,14 @@ export default function ButtonHeader ( ) {
                       <DropdownItem >
                         Meus Projetos
                       </DropdownItem>
-                      <DropdownItem href="/projetos">
+                      <DropdownItem href="/nomeDoUsuario/projetos">
                         Projetos
                       </DropdownItem>
                       <DropdownItem >
                         Minhas Descrições
                       </DropdownItem>
                       <DropdownItem href="/nomeDoUsuario/descricoes">
-                        Listar Descrições
+                        Descrições
                       </DropdownItem>
                       <DropdownItem href="/nomeDoUsuario/criar-descricao">
                         Criar Descrição
