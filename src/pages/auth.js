@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -8,12 +8,15 @@ import { parseCookies, setCookie} from 'nookies';
 import loginImage from '../../public/login-image.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { AuthContext } from '../contexts/AuthContext';
 
 
 export default function LoginPage () {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const {signIn} = useContext(AuthContext);
 
     const cookies = parseCookies();
     const router = useRouter();
@@ -23,8 +26,12 @@ export default function LoginPage () {
     if(cookies.cookieName){
         router.push('/');
     }
+
+    async function Login({ username ,password }) {
+        await signIn({ username ,password });
+    }
     
-    async function Login () {
+    /*async function Login () {
         fetch('http://www.colabeduc.org/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -44,7 +51,7 @@ export default function LoginPage () {
               router.push('/')     
             })
             .catch(ex => setinvalidAccount (true));
-    }
+    }*/
     
 
     return (
