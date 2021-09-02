@@ -8,6 +8,8 @@ export function AuthProvider({ children }) {
 
     const isAuthenticated = !!user;
 
+    let token = 
+
     async function signIn ({ username, password }) {
         fetch('http://www.colabeduc.org/api/login', {
             method: 'POST',
@@ -23,7 +25,6 @@ export function AuthProvider({ children }) {
             });
               setUser({nome: json.username,age: 19});
               Router.push('/');
-    
             })
             //.catch(ex => setinvalidAccount (true));
     }
