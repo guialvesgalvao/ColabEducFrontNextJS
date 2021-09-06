@@ -43,6 +43,17 @@ import { parseCookies } from "nookies";
       {name: "BattleField",id:4,description:"O jogo Corrida do Munícipio de Natal/RN intenciona oportunizar aos alunos do 4º ano do Ensino Fundamental apropriar-se de conhecimentos referentes à história do município de Natal/RN, estabelecendo assim relações entre fatos acontecimentos do passado e sua relação com o presente e entender o que permaneceu e o que mudou no contexto histórico cultural de sua cidade. Objetiva-se despertar a conscientização sobre a história da cidade em que vive e a importância de seu papel enquanto cidadão para a preservação dessa história.",criador:"Rodolfo",link:"https://www.instagram.com/guialvesgalvao/",materia:{materianame: "Geografia",color:"green"},ano: "7º fundamental",habilidades: "1hfh Geografia - tomar decisões baseadas na história do brasil"},
       {name: "GTA 5",id: 5,description:"game 5",criador:"Kevin",link:"https://www.instagram.com/guialvesgalvao/",materia:{materianame: "Ed. Fisíca",color:"purple"},ano: "1º fundamental",habilidades: "1hfh Ed. Fisíca - tomar decisões baseadas na história do brasil"}
   ];
+
+  async function testar (){
+    const res = await fetch('http://colabeduc.org/api/projeto', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json', 'X-Auth-Token': token }
+    }).then((response) => response.json()) //2
+    .then((user) => {
+      console.log(user); //3
+    });
+  }
+    
 console.log (gameData);
 
     return (
@@ -50,6 +61,7 @@ console.log (gameData);
 
       <Container>
         <h1 className="mb-5 mt-3">Descrições</h1>
+        <Button onClick={testar}>ee</Button>
        
       </Container>
 
