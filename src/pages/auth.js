@@ -16,18 +16,19 @@ export default function LoginPage () {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const {signIn} = useContext(AuthContext);
+    const {signIn,invalidAccount} = useContext(AuthContext);
 
     const cookies = parseCookies();
     const router = useRouter();
+    
 
-    const [invalidAccount, setinvalidAccount] = useState(false);
+    
 
     if(cookies.cookieName){
         router.push('/');
     }
 
-    async function Login({ username ,password }) {
+    async function Login() {
         await signIn({ username ,password });
     }
     

@@ -11,12 +11,15 @@ import Link from "next/dist/client/link";
 import Image from 'next/image';
 import loginImage from '../../public/login-image.png';
 import undefinedProfilePic from '../../public/undefinedProfilePic.jpg';
+import React,{useContext} from "react";
+import { AuthContext } from '../contexts/AuthContext';
 
 
 
 export default function ButtonHeader ( ) {
     const router = useRouter();
     const cookies = parseCookies();
+    const {user} = useContext(AuthContext);
 
 
     function logOut () {
@@ -28,56 +31,57 @@ export default function ButtonHeader ( ) {
     }
 
 
-    if(!cookies.cookieName){
-        return (
-            <Button className="navButton textNavButton"  size="md" href="/auth">Login            
-    </Button>
-        )
+    if(user != null){
+      return(
+        <div className="positionButtonImage">
+          
+          <Link href="/nomeDoUsuario/perfil">
+            <a>
+              <Image 
+              src={loginImage}
+              layout="intrinsic" 
+              alt="Foto de perfil do Usuário" 
+              width="32" height="32" className="border-radius-image"/>
+            </a>
+          </Link>
+          <span className="arrumardps">aa</span>
+          
+            <Button className="navButton"  size="sm">
+                <UncontrolledDropdown  nav inNavbar>
+                  <DropdownToggle className="textNavButton" nav caret>
+                    Hello, {user.nome}
+                  </DropdownToggle>
+                  <DropdownMenu className="textNavButton" right>
+                    <DropdownItem >
+                      Meus Projetos
+                    </DropdownItem>
+                    <DropdownItem href="/nomeDoUsuario/projetos">
+                      Projetos
+                    </DropdownItem>
+                    <DropdownItem >
+                      Minhas Descrições
+                    </DropdownItem>
+                    <DropdownItem href="/nomeDoUsuario/descricoes">
+                      Descrições
+                    </DropdownItem>
+                    <DropdownItem href="/nomeDoUsuario/criar-descricao">
+                      Criar Descrição
+                    </DropdownItem>
+                    <DropdownItem onClick={logOut}>
+                      Sair
+                    </DropdownItem>
+          
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              </Button>
+        </div>
+      )
+      
     }
     else{
-        return(
-          <div className="positionButtonImage">
-            
-            <Link href="/nomeDoUsuario/perfil">
-              <a>
-                <Image 
-                src={loginImage}
-                layout="intrinsic" 
-                alt="Foto de perfil do Usuário" 
-                width="32" height="32" className="border-radius-image"/>
-              </a>
-            </Link>
-            <span className="arrumardps">aa</span>
-            
-              <Button className="navButton"  size="sm">
-                  <UncontrolledDropdown  nav inNavbar>
-                    <DropdownToggle className="textNavButton" nav caret>
-                      Hello, {cookies.cookieName}
-                    </DropdownToggle>
-                    <DropdownMenu className="textNavButton" right>
-                      <DropdownItem >
-                        Meus Projetos
-                      </DropdownItem>
-                      <DropdownItem href="/nomeDoUsuario/projetos">
-                        Projetos
-                      </DropdownItem>
-                      <DropdownItem >
-                        Minhas Descrições
-                      </DropdownItem>
-                      <DropdownItem href="/nomeDoUsuario/descricoes">
-                        Descrições
-                      </DropdownItem>
-                      <DropdownItem href="/nomeDoUsuario/criar-descricao">
-                        Criar Descrição
-                      </DropdownItem>
-                      <DropdownItem onClick={logOut}>
-                        Sair
-                      </DropdownItem>
-            
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
-                </Button>
-          </div>
+         return (
+            <Button className="navButton textNavButton"  size="md" href="/auth">Login            
+    </Button>    
         )
     }
 

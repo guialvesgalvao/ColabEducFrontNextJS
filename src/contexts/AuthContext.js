@@ -1,36 +1,32 @@
 import { createContext, useState } from "react";
 import Router from "next/router";
 
-export const AuthContext = createContext({});
+export const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(undefined);
+
+    const [invalidAccount, setinvalidAccount] = useState(false);
 
     const isAuthenticated = !!user;
-
-    let token = 
 
     async function signIn ({ username, password }) {
         fetch('http://www.colabeduc.org/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({username,password})
-          }).then(r => r.json())
+          })
+            .then(r => r.json())
             .then(json => {
-              console.log(json);
-              //setinvalidAccount (false);
-              setCookie(null, 'cookieToken', json.access_token, {
-                maxAge:60*60*24,
-                path:'/',
-            });
-              setUser({nome: json.username,age: 19});
+              setinvalidAccount (false);
+              setUser({nome: json.username,token: json.access_token});
               Router.push('/');
             })
-            //.catch(ex => setinvalidAccount (true));
+            .catch(ex =>setinvalidAccount (true))
     }
 
     return (
-        <AuthContext.Provider value={{ user, isAuthenticated, signIn}}>
+        <AuthContext.Provider value={{ user, isAuthenticated, signIn,invalidAccount}}>
             {children}
         </AuthContext.Provider> 
     )
