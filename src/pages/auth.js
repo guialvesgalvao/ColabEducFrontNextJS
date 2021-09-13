@@ -16,44 +16,18 @@ export default function LoginPage () {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const {signIn,invalidAccount} = useContext(AuthContext);
+    const {signIn,invalidAccount,user} = useContext(AuthContext);
 
     const cookies = parseCookies();
-    const router = useRouter();
-    
+    const router = useRouter();    
 
-    
-
-    if(cookies.cookieName){
-        router.push('/');
-    }
+    //if(user != null){
+    //    router.push('/');
+    //}
 
     async function Login() {
         await signIn({ username ,password });
     }
-    
-    /*async function Login () {
-        fetch('http://www.colabeduc.org/api/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({username,password})
-          }).then(r => r.json())
-            .then(json => {
-              console.log(json);
-              setinvalidAccount (false);
-              setCookie(null, 'cookieName', json.username, {
-                  maxAge:60*60*24,
-                  path:'/',
-              });
-              setCookie(null, 'cookieToken', json.access_token, {
-                maxAge:60*60*24,
-                path:'/',
-            });
-              router.push('/')     
-            })
-            .catch(ex => setinvalidAccount (true));
-    }*/
-    
 
     return (
         <div className=" bg-light">

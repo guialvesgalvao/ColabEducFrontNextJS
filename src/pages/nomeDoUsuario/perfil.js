@@ -1,23 +1,31 @@
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import { Button, Container } from "reactstrap";
-import { AvForm, AvField } from "availity-reactstrap-validation";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Image from 'next/image';
 import undefinedProfilePic from '../../../public/undefinedProfilePic.jpg';
 import loginImage from '../../../public/login-image.png';
 import Link from "next/link";
+import { AuthContext } from "../../contexts/AuthContext";
 
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async (ctx) => {
 
-    const cookies = parseCookies();
-    const myName = await cookies.cookieName;
-        console.log(myName);
+    const cookies = parseCookies(ctx);
+    const userName = cookies.cookieName;
+    if(!userName){
+        return{
+            redirect: {
+                destination:'/',
+                permanent: false
+            }
+        }
+    }
+
+
     const res = await fetch('http://www.colabeduc.org/public/');
     const resJson = await res.json();
-    const load = resJson.find( tab => tab.username == `testeca32`);
-
+    const load = resJson.find( tab => tab.username == `${userName}`);
     let profilePic;
     const userImageString = load.profileImageUrl;
     if(userImageString){
@@ -40,14 +48,12 @@ export const getStaticProps = async () => {
 
 export default function Perfil ({userData}) {
     const cookies = parseCookies();
-    const router = useRouter();
-    console.log(userData.image)
+    //console.log(userData.image)
+
     const dataCriacaoString = userData.chegada;
     const dataCriacaoArray = dataCriacaoString.split('');
     const dataCriacao = dataCriacaoArray[8]+dataCriacaoArray[9]+"/"+dataCriacaoArray[5]+dataCriacaoArray[6]+"/"+dataCriacaoArray[0]+dataCriacaoArray[1]+dataCriacaoArray[2]+dataCriacaoArray[3]
-    //if(!cookies.cookieName){
-    //    router.push('/');
-    //}
+
     
 
     return (

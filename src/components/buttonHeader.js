@@ -19,15 +19,14 @@ import { AuthContext } from '../contexts/AuthContext';
 export default function ButtonHeader ( ) {
     const router = useRouter();
     const cookies = parseCookies();
-    const {user} = useContext(AuthContext);
+    const {user,setUser} = useContext(AuthContext);
 
 
     function logOut () {
         destroyCookie(null, 'cookieName');
         destroyCookie(null, 'cookieToken');
-        router.push('/');
-        
-        
+        setUser(null);
+        router.push('/');  
     }
 
 

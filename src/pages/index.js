@@ -63,11 +63,11 @@ export default function Home ({ dados }){
   }
 
   function startButtonDestination1(){
-    if(isAuthenticated){
-      console.log("positivo")
+    if(user){
+      console.log(user)
     }    
-    if(!isAuthenticated){
-      console.log("negativo")
+    if(!user){
+      console.log(user)
     }
   }
 

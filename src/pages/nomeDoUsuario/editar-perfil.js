@@ -9,22 +9,29 @@ import loginImage1 from '../../../public/login-image1.png';
 import Link from "next/link";
 
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async (ctx) => {
 
-    const cookies = parseCookies();
-    const myName = cookies.cookieName;
+    const cookies = parseCookies(ctx);
+    const userName = cookies.cookieName;
+
+    if(!userName){
+        return{
+            redirect: {
+                destination:'/',
+                permanent: false
+            }
+        }
+    }
 
     const res = await fetch('http://www.colabeduc.org/public/');
     const resJson = await res.json();
-    const load = resJson.find( tab => tab.username == `papaiquer`);
+    const load = resJson.find( tab => tab.username == `${userName}`);
     
     let profilePic;
     const userImageString = load.profileImageUrl;
     if(userImageString){
         profilePic=loginImage1;
     }else {profilePic = undefinedProfilePic;}
-
-    
 
     const data = {
         name: load.username,
