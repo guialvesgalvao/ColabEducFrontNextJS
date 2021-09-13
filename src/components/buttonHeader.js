@@ -21,14 +21,12 @@ export default function ButtonHeader ( ) {
     const cookies = parseCookies();
     const {user,setUser} = useContext(AuthContext);
 
-
     function logOut () {
         destroyCookie(null, 'cookieName');
         destroyCookie(null, 'cookieToken');
         setUser(null);
         router.push('/');  
     }
-
 
     if(user != null){
       return(

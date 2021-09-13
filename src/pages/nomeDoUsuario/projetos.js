@@ -2,6 +2,24 @@ import { Container,Alert,Button, Card,CardBody,CardText,CardTitle,Badge,CardHead
 import React, { useState } from 'react';
 import { parseCookies } from "nookies";
 
+
+export async function getServerSideProps(ctx) {
+  const cookies = parseCookies(ctx);
+  const token = cookies.cookieToken;
+  const res = await fetch('http://colabeduc.org/api/projeto', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json', 'X-Auth-Token': token }
+  });
+  const r= await res.json();
+  console.log(r);
+  const gameData = [{name: r.nome,id: r.id,link: r.linkJogo,description: "teste",criador: "testeDono",materia:{materianame: "MatériaTeste",color: "yellow"},ano: "anoTeste",habilidades:"habilidadesTeste"}]
+
+  return {
+    props: { name:"abobora" }
+  }
+}
+
+
 export default function Projetos () {
     const cookies = parseCookies();
      const token = cookies.cookieToken;
@@ -12,7 +30,6 @@ export default function Projetos () {
       {name: "BattleField",id:4,description:"game 4",criador:"Rodolfo",link:"https://www.instagram.com/guialvesgalvao/",materia:{materianame: "Geografia",color:"green"},ano: "7º fundamental",habilidades: "1hfh história - tomar decisões baseadas na história do brasil"},
       {name: "GTA 5",id: 5,description:"game 5",criador:"Kevin",link:"https://www.instagram.com/guialvesgalvao/",materia:{materianame: "Ed. Fisíca",color:"grey"},ano: "1º fundamental",habilidades: "1hfh história - tomar decisões baseadas na história do brasil"}
   ];
-console.log (gameData);
 
     return (
       <div>

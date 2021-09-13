@@ -4,26 +4,23 @@ import { parseCookies } from "nookies";
 
 
 
-{/*export async function getStaticProps() {
-  const cookies = parseCookies();
+export async function getServerSideProps(ctx) {
+  const cookies = parseCookies(ctx);
   const token = cookies.cookieToken;
-      const res = fetch('http://colabeduc.org/api/projeto', {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json', 'X-Auth-Token': token }
-      }).then((response) => response.json()) //2
-      .then((user) => {
-        console.log(user[1]);
-      });
 
+  const res = await fetch('http://colabeduc.org/api/descricao', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json', 'X-Auth-Token': token }
+  });
+  const r = await res.json();
+  console.log(user);
 
- 
+      return {
+        props: { name:"abobora" }
+      }
   //https://dev.to/ramonak/javascript-how-to-access-the-return-value-of-a-promise-object-1bck
-    }
+}
 
-    return {
-      props: { name:"abobora" }
-    }
-  }*/}
 
   export default function Descricoes () {
     const cookies = parseCookies();
@@ -35,10 +32,7 @@ import { parseCookies } from "nookies";
       {name: "BattleField",id:4,description:"O jogo Corrida do Munícipio de Natal/RN intenciona oportunizar aos alunos do 4º ano do Ensino Fundamental apropriar-se de conhecimentos referentes à história do município de Natal/RN, estabelecendo assim relações entre fatos acontecimentos do passado e sua relação com o presente e entender o que permaneceu e o que mudou no contexto histórico cultural de sua cidade. Objetiva-se despertar a conscientização sobre a história da cidade em que vive e a importância de seu papel enquanto cidadão para a preservação dessa história.",criador:"Rodolfo",link:"https://www.instagram.com/guialvesgalvao/",materia:{materianame: "Geografia",color:"green"},ano: "7º fundamental",habilidades: "1hfh Geografia - tomar decisões baseadas na história do brasil"},
       {name: "GTA 5",id: 5,description:"game 5",criador:"Kevin",link:"https://www.instagram.com/guialvesgalvao/",materia:{materianame: "Ed. Fisíca",color:"purple"},ano: "1º fundamental",habilidades: "1hfh Ed. Fisíca - tomar decisões baseadas na história do brasil"}
   ];
-
-
-
-
+  
     return (
       <div>
 
