@@ -53,7 +53,7 @@ export default function ButtonHeader ( ) {
                         Meus Projetos
                       </DropdownItem>
                     </Link>
-                    <Link href="/nomeDoUsuario/projetos">
+                    <Link href="/projetos">
                       <DropdownItem >
                         Projetos
                       </DropdownItem>
@@ -63,7 +63,7 @@ export default function ButtonHeader ( ) {
                         Minhas Descrições
                       </DropdownItem>
                     </Link>
-                    <Link href="/nomeDoUsuario/descricoes">
+                    <Link href="/descricoes">
                       <DropdownItem >
                         Descrições
                       </DropdownItem>

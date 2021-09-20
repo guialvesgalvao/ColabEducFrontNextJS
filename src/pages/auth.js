@@ -18,9 +18,6 @@ export default function LoginPage () {
 
     const {signIn,invalidAccount,user} = useContext(AuthContext);
 
-    const cookies = parseCookies();
-    const router = useRouter();    
-
     //if(user != null){
     //    router.push('/');
     //}
