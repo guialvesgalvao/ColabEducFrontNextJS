@@ -13,7 +13,9 @@ export default function Footer () {
  return (
      <div className="footerStyle pt-2">
          <div>
-             <a href="https://www.instagram.com/colabeduc/"><FontAwesomeIcon size="2x" className="footerIcon" icon={faInstagram} />  </a>
+             <Link href="https://www.instagram.com/colabeduc/">
+             <a><FontAwesomeIcon size="2x" className="footerIcon" icon={faInstagram} />  </a>
+             </Link>
              
          </div>
          <div className="footerText">
@@ -21,7 +23,7 @@ export default function Footer () {
              <span>Copyright © Colabeduc 2020</span></div>
          <div className="footerImage">
              <Link href='http://www.natalnet.br/home/'>
-                 <a href="">
+                 <a>
                      <Image src={natalnetLogo} alt="Natalnet Labs" />
                  </a>
              </Link>

@@ -18,7 +18,6 @@ import { AuthContext } from '../contexts/AuthContext';
 
 export default function ButtonHeader ( ) {
     const router = useRouter();
-    const cookies = parseCookies();
     const {user,setUser} = useContext(AuthContext);
 
     function logOut () {
@@ -49,21 +48,31 @@ export default function ButtonHeader ( ) {
                     Hello, {user.nome}
                   </DropdownToggle>
                   <DropdownMenu className="textNavButton" right>
-                    <DropdownItem >
-                      Meus Projetos
-                    </DropdownItem>
-                    <DropdownItem href="/nomeDoUsuario/projetos">
-                      Projetos
-                    </DropdownItem>
-                    <DropdownItem >
-                      Minhas Descrições
-                    </DropdownItem>
-                    <DropdownItem href="/nomeDoUsuario/descricoes">
-                      Descrições
-                    </DropdownItem>
-                    <DropdownItem href="/nomeDoUsuario/criar-descricao">
-                      Criar Descrição
-                    </DropdownItem>
+                    <Link href="#">
+                      <DropdownItem >
+                        Meus Projetos
+                      </DropdownItem>
+                    </Link>
+                    <Link href="/nomeDoUsuario/projetos">
+                      <DropdownItem >
+                        Projetos
+                      </DropdownItem>
+                    </Link>
+                    <Link href="#">
+                      <DropdownItem >
+                        Minhas Descrições
+                      </DropdownItem>
+                    </Link>
+                    <Link href="/nomeDoUsuario/descricoes">
+                      <DropdownItem >
+                        Descrições
+                      </DropdownItem>
+                    </Link>
+                    <Link href="/nomeDoUsuario/criar-descricao">
+                      <DropdownItem >
+                        Criar Descrição
+                      </DropdownItem>
+                    </Link>
                     <DropdownItem onClick={logOut}>
                       Sair
                     </DropdownItem>

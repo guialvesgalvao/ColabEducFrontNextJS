@@ -10,10 +10,6 @@ export default function Header()  {
   /*const {user} = useContext(AuthContext);
   console.log(user);*/
 
-  function teste (){
-        return (logo)
-  }
-
 
     return (
     <>
@@ -22,7 +18,7 @@ export default function Header()  {
         
       <Link href="/" >
       <a>
-        <Image src={teste()} alt="ColabEduc" />
+        <Image src={logo} alt="ColabEduc" />
       </a>
       </Link>
       
