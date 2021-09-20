@@ -11,11 +11,11 @@ export async function getServerSideProps(ctx) {
       headers: { 'Content-Type': 'application/json', 'X-Auth-Token': token }
   });
   const r= await res.json();
-  console.log(r);
+   console.log(r)
   const gameData = [{name: r.nome,id: r.id,link: r.linkJogo,description: "teste",criador: "testeDono",materia:{materianame: "MatériaTeste",color: "yellow"},ano: "anoTeste",habilidades:"habilidadesTeste"}]
 
   return {
-    props: { name:"abobora" }
+    props: { name:"temporario"}//gameData:r// 
   }
 }
 
@@ -52,7 +52,7 @@ export default function Projetos () {
                 <PopoverBody>{gameData.habilidades}</PopoverBody>
               </UncontrolledPopover>
           </CardTitle>
-          <CardSubtitle tag="h6" className="mb-2 text-muted">{gameData.materia.materianame}</CardSubtitle>
+          {/*<CardSubtitle tag="h6" className="mb-2 text-muted">{gameData.materia.materianame}</CardSubtitle>*/}
           <span>Resumo</span>
           <CardText>{gameData.description}</CardText>
           <CardSubtitle>{gameData.link}</CardSubtitle>

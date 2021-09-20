@@ -1,9 +1,12 @@
 import React,{useContext} from 'react';
-import { Jumbotron, Container, Button, Col,UncontrolledCarousel } from 'reactstrap';
+import { Jumbotron, Container, Button, Col, Card,CardBody,CardTitle} from 'reactstrap';
 import { useRouter } from 'next/router';
-import loginImage from '../../public/login-image.png';
+import game1 from '../../public/mathstar.png';
+import game2 from '../../public/space.png';
+import game3 from '../../public/memory.png';
 import { parseCookies} from 'nookies';
 import Image from 'next/image';
+import Link from 'next/link';
 import { AuthContext } from '../contexts/AuthContext';
 
 
@@ -14,40 +17,12 @@ export const getStaticProps = async () => {
   const res = await fetch('http://www.colabeduc.org/public/numbers');
   const data = await res.json();
   
-
   return {
       props: { dados: data }
   }
 }
 
 export default function Home ({ dados }){
-
-  const Carousel = () => <UncontrolledCarousel items={items} />;
-
-  const items = [
-    {
-      src: 'https://wallpapercave.com/wp/wp6400060.jpg',
-      altText: 'Primeiro Jogo: Math Star',
-      caption: '👍 55 likes',
-      header: 'Math Star',
-      key: '1'
-    },
-    {
-      src: 'https://c4.wallpaperflare.com/wallpaper/181/559/747/aesthetic-neon-wallpaper-preview.jpg',
-      altText: 'Segundo Jogo: Space Odyssey',
-      caption: '👍 23 likes',
-      header: 'Space Odyssey',
-      key: '2'
-    },
-    {
-      src: '1',
-      altText: 'Terceiro Jogo: Jogar e Aprender',
-      caption: '👍 12 likes',
-      header: 'Jogar e Aprender',
-      key: '3'
-    }
-  ];
-
   
   const cookies = parseCookies();
   const router = useRouter();
@@ -84,11 +59,35 @@ export default function Home ({ dados }){
         </Container>
       </Jumbotron>
       
-      <div className="pb-4 divShowGames">
-      <Container className="pb-5">
-      <h1 className="titleShowGames">Conheça nossos jogos</h1>
+      <div className="divShowGames">
+      <Container className="pb-3">
+      <h1 className="titleShowGames mb-4">Conheça nossos jogos</h1>
+      <div className="organizeGames">
+      <Card className="cardGame">
+        <Image src={game1} width="400" height="300" layout="responsive" alt="Math-Star logo"/>
+        <CardBody>
+          <CardTitle tag="h5">Math Star</CardTitle>
+        </CardBody>
+      </Card>
+      <Card className="cardGame">
+      <Image src={game2} width="400" height="300" layout="responsive" alt="Math-Star logo"/>
+        <CardBody>
+          <CardTitle tag="h5">Space Odyssey</CardTitle>
+        </CardBody>
+      </Card>
+      <Card className="cardGame">
+      <Image src={game3} width="400" height="300" layout="responsive" alt="Math-Star logo"/>
+        <CardBody>
+          <CardTitle tag="h5">Memory Square</CardTitle>
+        </CardBody>
+      </Card>
+      </div>
+      <Link href="/">
+      <a>
+      <h5 className="mt-4 seeAll">+ ver todos</h5>
+      </a>
+      </Link>
       </Container>
-        <Carousel autoPlay="false" />
       </div>
 
 

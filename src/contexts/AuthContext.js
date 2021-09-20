@@ -29,7 +29,7 @@ export function AuthProvider({ children }) {
       const res = await fetch('http://www.colabeduc.org/public/');
       const resJson = await res.json();
       const load = resJson.find( tab => tab.username == `${name}`);
-      setUser({nome: load.username,token: load.username,email: load.email,id: load.id})
+      setUser({nome: load.username,token: load.username,email: load.email,id: load.id,userImg: load.profileImageUrl})
     }
 
     async function signIn ({ username, password }) {

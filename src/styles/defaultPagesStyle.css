@@ -147,7 +147,7 @@ align-items: center;
 
 .divShowGames {
     background-color: #481f87;
-    padding:1.5rem 0 1.5rem 0;
+    padding: 1.5rem 0 0 0;
     margin:1rem 0 2rem 0;
 }
 
@@ -156,6 +156,32 @@ align-items: center;
     color: #fff;
 
 }
+
+.organizeGames {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cardGame {
+    width: 25%;
+    box-shadow: 4px 4px 4px 1px rgba(0, 0, 0, 0.6);
+    transition: 0.45s;
+}
+.cardGame:hover {
+    width: 30%;
+    transition: 0.45s;
+}
+
+.seeAll {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    text-decoration: none;
+}
+
 
 
 @media(max-width: 1080px){

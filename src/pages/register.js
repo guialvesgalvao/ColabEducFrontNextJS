@@ -34,7 +34,8 @@ export default function RegisterPage () {
             body: JSON.stringify({username,password,email})
           }).then(r => r.json())
             .then(json => {
-              console.log(json);     
+              console.log(json); 
+              router.push('/auth');    
             })
             .catch(ex => console.error('Problemas ao registrar', ex));        
     }

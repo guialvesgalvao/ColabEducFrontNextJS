@@ -130,6 +130,11 @@
     font-size: 2rem;
 }
 
+.organizeHability {
+    display: flex;
+    flex-direction: column;
+}
+
 @media(max-width: 1080px){
     .descriptionCard {
         width: 45%;

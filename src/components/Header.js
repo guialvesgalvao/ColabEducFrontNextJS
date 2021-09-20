@@ -1,11 +1,19 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import logo from '../../public/logo.png';
-import React from 'react';
 import ButtonHeader from './buttonHeader';
+import React,{useContext} from "react";
+import { AuthContext } from '../contexts/AuthContext';
 
 
 export default function Header()  {
+  /*const {user} = useContext(AuthContext);
+  console.log(user);*/
+
+  function teste (){
+        return (logo)
+  }
+
 
     return (
     <>
@@ -14,7 +22,7 @@ export default function Header()  {
         
       <Link href="/" >
       <a>
-        <Image src={logo} alt="ColabEduc" />
+        <Image src={teste()} alt="ColabEduc" />
       </a>
       </Link>
       

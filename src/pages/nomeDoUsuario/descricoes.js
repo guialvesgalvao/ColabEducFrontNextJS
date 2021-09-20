@@ -13,7 +13,7 @@ export async function getServerSideProps(ctx) {
       headers: { 'Content-Type': 'application/json', 'X-Auth-Token': token }
   });
   const r = await res.json();
-  console.log(user);
+ 
 
       return {
         props: { name:"abobora" }
@@ -46,16 +46,16 @@ export async function getServerSideProps(ctx) {
           <Card className="descriptionCard" key={gameData.id}>
             <CardHeader className="separeTwoItems">
                 <CardTitle tag="h5" className="separeTwoItemsExtra">{gameData.name} </CardTitle>
-                <Button id={"popOver"+`${gameData.id}`} size="sm" className="subjectButton" style={{color: 'white',backgroundColor: `${gameData.materia.color}` }}>{gameData.materia.materianame}</Button>
-                <UncontrolledPopover trigger="focus" placement="bottom" target={"popOver"+`${gameData.id}`}>
-                <PopoverHeader>{gameData.ano}</PopoverHeader>
-                <PopoverBody>{gameData.habilidades}</PopoverBody>
-                </UncontrolledPopover>
-             
+                <Button id={"popOver"+`${gameData.id}`} size="sm" className="subjectButton" style={{color: 'white',backgroundColor: `${gameData.materia.color}` }}>{gameData.materia.materianame}</Button>             
             </CardHeader>
             <CardBody>
               <span>Resumo</span>
               <CardText>{gameData.description}</CardText>
+              <hr></hr>
+              <div className="organizeHability">
+                <span style={{marginBottom:'0.6rem'}}>{gameData.ano}</span>
+                <span>{gameData.habilidades}</span>
+              </div>
             </CardBody>
             <CardFooter className="separeTwoItems">
               <Button size="sm" >Usar Descrição</Button>
