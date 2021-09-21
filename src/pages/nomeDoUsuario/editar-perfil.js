@@ -26,46 +26,29 @@ export const getServerSideProps = async (ctx) => {
     const res = await fetch('http://www.colabeduc.org/public/');
     const resJson = await res.json();
     const load = resJson.find( tab => tab.username == `${userName}`);
-    
-    let profilePic;
-    const userImageString = load.profileImageUrl;
-    if(userImageString){
-        profilePic=loginImage1;
-    }else {profilePic = undefinedProfilePic;}
 
     const data = {
         name: load.username,
         email: load.email,
         password: load.password,
-        image: profilePic
+        image: null
     }
 
+    if(load.profileImageUrl===null){
+        data.image=undefinedProfilePic
+    }else{data.image=load.profileImageUrl}
+    
     return {
         props: { userData: data}
     }
   }
 
 export default function Perfil ({userData}) {
-    const cookies = parseCookies();
-    const router = useRouter();
     const [username, setUsername] = useState(userData.name);
     const [email, setEmail] = useState(userData.email);
     const [password, setPassword] = useState('');
     const [confirmpassword, setconfirmPassword] = useState('');
 
-
-
-    //if(nameImage = "unnamed"){
-    //const userProfileImage = "epa" }
-    //else{
-     //   const userProfileImage = userData.image
-    //}
-    console.log(userData.image)
-    
-
-    //if(!cookies.cookieName){
-    //    router.push('/');
-    //}
     return (
         <>
         <Container className="mt-3 cardPage " >

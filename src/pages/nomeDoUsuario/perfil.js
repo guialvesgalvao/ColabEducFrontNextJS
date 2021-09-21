@@ -26,21 +26,22 @@ export const getServerSideProps = async (ctx) => {
     const res = await fetch('http://www.colabeduc.org/public/');
     const resJson = await res.json();
     const load = resJson.find( tab => tab.username == `${userName}`);
-    let profilePic;
-    const userImageString = load.profileImageUrl;
-    if(userImageString){
-        profilePic=loginImage;
-    }else {profilePic = undefinedProfilePic;}
+
+    
 
     const data = {
         name: load.username,
         email: load.email,
+        image: null,
         password: load.password,
-        image: userImageString,
         descricoes: load.descricoes,
         chegada: load.dateCreated
     }
 
+    if(load.profileImageUrl===null){
+        data.image=undefinedProfilePic
+    }else{data.image=load.profileImageUrl}
+    
     return {
         props: { userData: data}
     }
@@ -54,8 +55,6 @@ export default function Perfil ({userData}) {
     const dataCriacaoArray = dataCriacaoString.split('');
     const dataCriacao = dataCriacaoArray[8]+dataCriacaoArray[9]+"/"+dataCriacaoArray[5]+dataCriacaoArray[6]+"/"+dataCriacaoArray[0]+dataCriacaoArray[1]+dataCriacaoArray[2]+dataCriacaoArray[3]
 
-    
-
     return (
         <>
         <Container className="mt-3 cardPage " >
@@ -66,7 +65,7 @@ export default function Perfil ({userData}) {
                 </Button>
             </div>
             <div className="perfilImage mb-2">
-                <Image src={loginImage} layout="intrinsic" alt="Profile Image" width="200" height="200" className="border-radius-image"/>
+                <Image src={userData.image} layout="intrinsic" alt="Profile Image" width="200" height="200" className="border-radius-image"/>
 
                 <div className="row-data mt-3">
                     <h6> Nome: <span>{userData.name}</span></h6>
